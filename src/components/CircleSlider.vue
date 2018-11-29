@@ -8,8 +8,8 @@
     >
       <g>
         <circle :stroke="circleColor" fill="none" :stroke-width="cpMainCircleStrokeWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
+        <text alignment-baseline="middle" text-anchor="middle" :x="cpCenter" :y="cpCenter" :fill="textColor" class="circleText">{{currentStepValue}}</text>
         <path :stroke="progressColor" fill="none" :stroke-width="cpPathStrokeWidth" :d="cpPathD"></path>
-        <text xmlns="http://www.w3.org/2000/svg" x="50%" y="50%" text-anchor="middle" :stroke="circleColor" stroke-width="0px" class="circleText">{{textValue}}</text>
         <circle :fill="knobColor" :r="cpKnobRadius" :cx="cpPathX" :cy="cpPathY"></circle>
       </g>
     </svg>
@@ -50,10 +50,6 @@ export default {
       type: Number,
       required: false,
       default: 0
-    },
-    textValue:{
-      type:String,
-      required:false,
     },
     side: {
       type: Number,
@@ -217,8 +213,8 @@ export default {
     /*
      */
     handleMouseUp (e) {
-      //e.preventDefault()
-      this.$emit('mouseup')
+      e.preventDefault()
+      this.$emit('sliderup')
       this.mousePressed = false
       window.removeEventListener('mousemove', this.handleWindowMouseMove)
       window.removeEventListener('mouseup', this.handleMouseUp)
