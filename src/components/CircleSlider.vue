@@ -213,8 +213,8 @@ export default {
     /*
      */
     handleMouseUp (e) {
+      this.$emit('mouseup',e)
       e.preventDefault()
-      this.$emit('sliderup')
       this.mousePressed = false
       window.removeEventListener('mousemove', this.handleWindowMouseMove)
       window.removeEventListener('mouseup', this.handleMouseUp)
