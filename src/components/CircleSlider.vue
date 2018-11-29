@@ -9,7 +9,7 @@
       <g>
         <circle :stroke="circleColor" fill="none" :stroke-width="cpMainCircleStrokeWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
         <path :stroke="progressColor" fill="none" :stroke-width="cpPathStrokeWidth" :d="cpPathD"></path>
-        <text x="50%" y="50%" text-anchor="middle" stroke="circleColor" stroke-width="0px" class="circleText">{{textValue}}</text>
+        <text xmlns="http://www.w3.org/2000/svg" x="50%" y="50%" text-anchor="middle" :stroke="circleColor" stroke-width="0px" class="circleText">{{textValue}}</text>
         <circle :fill="knobColor" :r="cpKnobRadius" :cx="cpPathX" :cy="cpPathY"></circle>
       </g>
     </svg>
@@ -217,7 +217,7 @@ export default {
     /*
      */
     handleMouseUp (e) {
-      e.preventDefault()
+      //e.preventDefault()
       this.$emit('mouseup')
       this.mousePressed = false
       window.removeEventListener('mousemove', this.handleWindowMouseMove)
