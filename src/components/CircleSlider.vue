@@ -8,7 +8,7 @@
     >
       <g>
         <circle :stroke="circleColor" fill="none" :stroke-width="cpMainCircleStrokeWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
-        <text alignment-baseline="middle" text-anchor="middle" :x="cpCenter" :y="cpCenter" :fill="textColor" class="circleText">{{currentStepValue}}</text>
+        <text alignment-baseline="middle" text-anchor="middle" :x="cpCenter" :y="cpCenter" :fill="circleColor" class="circleText">{{currentStepValue}}</text>
         <path :stroke="progressColor" fill="none" :stroke-width="cpPathStrokeWidth" :d="cpPathD"></path>
         <circle :fill="knobColor" :r="cpKnobRadius" :cx="cpPathX" :cy="cpPathY"></circle>
       </g>
@@ -198,6 +198,7 @@ export default {
       if (this.touchPosition.isTouchWithinSliderRange) {
         const newAngle = this.touchPosition.sliderAngle
         this.animateSlider(this.angle, newAngle)
+        this.$emit('update',newAngle,this.angle)
       }
     },
 
@@ -213,7 +214,6 @@ export default {
     /*
      */
     handleMouseUp (e) {
-      this.$emit('mouseup',e)
       e.preventDefault()
       this.mousePressed = false
       window.removeEventListener('mousemove', this.handleWindowMouseMove)
