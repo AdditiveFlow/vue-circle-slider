@@ -5,10 +5,14 @@
       @click="handleClick"
       @mousedown="handleMouseDown"
       @mouseup="handleMouseUp"
+      @input="$emit('input',this.angle)"
     >
+    <style> .small {font:italic;} </style>
+    <text x="20" y="35" class="small">Other text</text>
       <g>
         <circle :stroke="circleColor" fill="none" :stroke-width="cpMainCircleStrokeWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
-        <text alignment-baseline="middle" text-anchor="middle" :x="cpCenter" :y="cpCenter" :fill="circleColor" class="circleText">{{currentStepValue}}</text>
+        <text x="20" y="35" class="small">My text</text>
+        <text alignment-baseline="middle" text-anchor="middle" :x="cpCenter" :y="cpCenter" :fill="circleColor" class="circleText">{{textValue}}</text>
         <path :stroke="progressColor" fill="none" :stroke-width="cpPathStrokeWidth" :d="cpPathD"></path>
         <circle :fill="knobColor" :r="cpKnobRadius" :cx="cpPathX" :cy="cpPathY"></circle>
       </g>
@@ -51,6 +55,12 @@ export default {
       required: false,
       default: 0
     },
+    textValue: {
+      type: String,
+      required: false,
+      default: 'hello'
+    },
+    
     side: {
       type: Number,
       required: false,
